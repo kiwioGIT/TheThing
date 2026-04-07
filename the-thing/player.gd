@@ -19,6 +19,8 @@ const V_LOOK_SENS = 0.0012
 
 @onready var cast = $Camera3D/RayCast3D
 
+@onready var anim = $AnimationPlayer
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		cam.rotation.x -= event.relative.y * V_LOOK_SENS
@@ -85,10 +87,13 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("right_click"):
 		var device_pos = cast.get_collision_point()
 		get_parent().move_blue(device_pos)
+		anim.play("pif")
+		
 	
 	if Input.is_action_just_pressed("click"):
 		var device_pos = cast.get_collision_point()
 		get_parent().move_red(device_pos)
+		anim.play("pif")
 	
 	get_node("Label").text = str(Vector3(velocity.x,0,velocity.z).length())
 	get_node("Label2").text = str(is_on_floor())
