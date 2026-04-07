@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://c5f7iv6gerf2y"]
+
+[ext_resource type="Script" uid="uid://bpb3cgykpdrt3" path="res://player.gd" id="1_dau68"]
+[ext_resource type="Texture2D" uid="uid://duuh0xhxdwhe2" path="res://cross.png" id="2_vlygt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ilsg7"]
+size = Vector3(1, 1.89177, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_onrkg"]
+size = Vector3(0.035, 0.12, 0.525)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i3pqv"]
+size = Vector3(0.035, 0.12, 0.31)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rxxg2"]
+
+[node name="PlayerBody" type="CharacterBody3D" unique_id=1715580892]
+script = ExtResource("1_dau68")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2112478495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928791, 0)
+shape = SubResource("BoxShape3D_ilsg7")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2123134711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45255, 0)
+current = true
+fov = 90.0
+
+[node name="Node3D" type="Node3D" parent="Camera3D" unique_id=1614549876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02305603, -1.4662825, -0.4223895)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Camera3D/Node3D" unique_id=2067937609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.555714, 1.2382976, -0.2567588)
+mesh = SubResource("BoxMesh_onrkg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Camera3D/Node3D" unique_id=1838090742]
+transform = Transform3D(1, 0, 0, 0, 0.49701944, -0.86773944, 0, 0.86773944, 0.49701944, 0.555714, 1.132667, -0.017991364)
+mesh = SubResource("BoxMesh_i3pqv")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=377626469]
+target_position = Vector3(0, 0, -100)
+hit_back_faces = false
+
+[node name="Label" type="Label" parent="." unique_id=1571288604]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="." unique_id=2092242680]
+offset_top = 34.0
+offset_right = 40.0
+offset_bottom = 57.0
+
+[node name="Control" type="Control" parent="." unique_id=1347114135]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cross" type="Sprite2D" parent="Control" unique_id=2139284838]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_vlygt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1565895134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00441, 0)
+mesh = SubResource("CylinderMesh_rxxg2")
